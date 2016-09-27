@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # coding: utf-8
 import socket
 import threading
-
+all_msg = ""
 class ClientThread(threading.Thread):
 
     def __init__(self, ip, port, clientsocket):
@@ -18,9 +18,8 @@ class ClientThread(threading.Thread):
         print("Connection de %s %s" % (self.ip, self.port, ))
         while (True):
             r = self.clientsocket.recv(2048)
-            print(r)
-         #   fp = open(r, 'rb')
-        #    self.clientsocket.send(fp.read())
+            all_msg = all_msg + r + "\n"
+            self.clientsockt.send(all_msg.encode())
         print("Client déconnecté...")
 
 tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -29,7 +28,6 @@ tcpsock.bind(("",15555))
 
 while True:
     tcpsock.listen(10)
-    print( "En écoute...")
     (clientsocket, (ip, port)) = tcpsock.accept()
     newthread = ClientThread(ip, port, clientsocket)
     newthread.start()
