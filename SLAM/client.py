@@ -12,12 +12,7 @@ all_msg = ""
 msg_a_envoyer = b""
 while msg_a_envoyer != b"fin":
     msg_a_envoyer = input(">")
-    os.system("clear")
-    # Peut planter si vous tapez des caractères spéciaux
     msg_a_envoyer = msg_a_envoyer.encode()
-    # On envoie le message
     connexion_avec_serveur.send(msg_a_envoyer)
-    msg_recu = connexion_avec_serveur.recv(1024)
-    print(msg_recu.decode()) # Là encore, peut planter s'il y a des accents
 print("Fermeture de la connexion")
 connexion_avec_serveur.close()

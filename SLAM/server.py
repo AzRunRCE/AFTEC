@@ -2,7 +2,6 @@
 # coding: utf-8
 import socket
 import threading
-all_msg = ""
 class ClientThread(threading.Thread):
 
     def __init__(self, ip, port, clientsocket):
@@ -14,12 +13,10 @@ class ClientThread(threading.Thread):
         print("[+] Nouveau thread pour %s %s" % (self.ip, self.port, ))
 
     def run(self): 
-   
         print("Connection de %s %s" % (self.ip, self.port, ))
         while (True):
-            r = self.clientsocket.recv(2048)
-            all_msg = all_msg + r + "\n"
-            self.clientsockt.send(all_msg.encode())
+            ra = self.clientsocket.recv(2048)
+            print(ra.decode())
         print("Client déconnecté...")
 
 tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
