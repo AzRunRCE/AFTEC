@@ -6,7 +6,7 @@ def encrypt(message):
         inputnb =ord(letter)
         x = inputnb // 16
         y = inputnb % 16
-        output = ((5*x-y)% 16)* 16 + ydir
+        output = ((5*x-y)% 16)* 16 + y
         message_crypted +=chr(output)
     return message_crypted
 
