@@ -6,3 +6,5 @@
 	https://pypi.python.org/pypi/selenium v3.3.0
 
 	python setup.py install
+
+Q. Martinez
